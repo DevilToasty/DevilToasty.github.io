@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      .buttonPress {
+        height: 35px;
+        width: 70px;
+        position: relative;
+        background-color: grey;
+        border-radius: 1rem;
+        font-family:
+          "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      a.button-style {
+        text-decoration: none;
+        color: black;
+        font-family:
+          "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+      }
+
+      .floating_audio {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-top: 10px;
+        padding-right: 5px;
+      }
+
+      .attackButton {
+        background-color: rgba(0, 205, 240, 0.5);
+        font-family:
+          "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      @keyframes hit {
+        0% {
+          transform: scale(1);
+          filter: none;
+        }
+        20% {
+          transform: scale(1.1);
+          filter: brightness(0.8) saturate(5);
+        }
+        50% {
+          transform: scale(0.95);
+          filter: brightness(0.9) saturate(6);
+        }
+        100% {
+          transform: scale(1);
+          filter: none;
+        }
+      }
+
+      #opponent.hit {
+        animation: hit 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+
+  <script>
+    // <!-- waits until everything loadded-->
+    window.addEventListener("DOMContentLoaded", () => {
+      const opponent = document.getElementById("opponent");
+      const attackChoice = document.getElementById("attack_choice");
+
+      function hitAnimation() {
+        opponent.classList.remove("hit");
+        void opponent.offsetWidth;
+        opponent.classList.add("hit");
+      }
+
+      window.ratPoison = function () {
+        hitAnimation();
+      };
+
+      window.mouseTrap = function () {
+        opponent.style.filter = "hue-rotate(180deg)";
+        alert("THIS ONE TRAPPED YOU!!");
+      };
+
+      window.cheeseThrow = function () {
+        opponent.style.filter = "saturate(100)";
+      };
+
+      window.attack = function () {
+        const choice = attackChoice.value;
+
+        if (choice === "cheeseThrow") {
+          cheeseThrow();
+        } else if (choice === "mouseTrap") {
+          mouseTrap();
+        } else if (choice === "ratPoison") {
+          ratPoison();
+        }
+      };
+
+      opponent.addEventListener("click", () => {
+        window.attack();
+      });
+    });
+  </script>
+
+  <body
+    style="
+      border-width: 0px;
+      border-color: #ff1900;
+      border-style: solid;
+      position: static;
+      background-color: rgba(100, 250, 200, 0.5);
+    "
+  >
+    <div
+      class="game_border"
+      style="
+        position: relative;
+        height: 70%;
+        border-color: green;
+        border-style: solid;
+        border-width: 0px;
+      "
+    >
+      <!-- Spacer -->
+
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          padding-bottom: 10px;
+        "
+      >
+        <div style="width: 33%">
+          <div style="padding-left: 10px">
+            <button class="buttonPress">
+              <a href="./" class="button-style"> Back</a>
+            </button>
+          </div>
+        </div>
+
+        <div style="width: 33%"></div>
+
+        <div
+          style="
+            position: relative;
+            width: 33%;
+            align-self: last baseline;
+            border-color: blueviolet;
+            border-style: solid;
+            border-width: 0px;
+          "
+        >
+          <div class="floating_audio">
+            <audio controls loop>
+              <source src="./audio/my_battle_music.mp3" type="audio/mp3" />
+              No audio elementt!!!!
+            </audio>
+          </div>
+        </div>
+      </div>
+      <!--- -->
+      <div style="justify-self: center; width: 100%; position: relative">
+        <!--- Spacer to divide section-->
+        <div
+          style="
+            font-size: 60;
+            background-color: #ff1900;
+            width: 35%;
+            justify-self: center;
+            padding: 5px;
+            border-radius: 10px;
+            text-align: center;
+          "
+        >
+          <h1>BATTLE TIME</h1>
+          <h3 style="font-style: italic">
+            Select your attack and click Torts with da Jorts
+          </h3>
+        </div>
+
+        <!-- Attacks! -->
+        <div
+          class="attack_options"
+          style="
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 40px;
+            gap: 5px;
+          "
+        >
+          <select
+            id="attack_choice"
+            class="attackButton"
+            style="width: 150px; padding: 10px"
+          >
+            <option value="cheeseThrow">Cheese Throw</option>
+            <option value="mouseTrap">Mouse Trap</option>
+            <option value="ratPoison">Rat Poison</option>
+          </select>
+        </div>
+
+        <div>
+          <img
+            id="player"
+            src="/Week2/BRADLEYBREEN_OurFirstGame/images/mouse.png"
+            alt="torts in the jorts"
+            style="
+              width: 200px;
+              position: absolute;
+              top: 250px;
+              left: 5%;
+              z-index: 1;
+            "
+          />
+        </div>
+
+        <div>
+          <img
+            id="opponent"
+            src="/Week2/BRADLEYBREEN_OurFirstGame/images/opponent.png"
+            alt="torts in the jorts"
+            style="
+              width: 250px;
+              background: radial-gradient(
+                rgba(100, 200, 100, 0.8),
+                rgba(255, 255, 255, 0)
+              );
+              border-radius: 100px;
+              position: absolute;
+              top: 250px;
+              left: 70%;
+
+              z-index: 1;
+            "
+          />
+        </div>
+      </div>
+
+      <img
+        src="/Week2/BRADLEYBREEN_OurFirstGame/images/battle_background.JPG"
+        alt="my snowy house"
+        style="width: 100%; position: absolute; top: 0; left: 0; z-index: -1"
+      />
+
+      <!--- battle sceen-->
+    </div>
+  </body>
+</html>
