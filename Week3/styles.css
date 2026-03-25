@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.main-page {
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
+  opacity: 100%;
+  transition: opacity 0.5s ease-in-out;
+  align-content: center;
+  margin: 0;
+  color: light-dark(#333b3c, #efefec);
+  padding-top: 20px;
+}
+
+.title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 1px 1px 1px;
+  justify-self: center;
+  color: light-dark(#222828, #f6f6f2);
+}
+
+h1.title {
+  font-size: clamp(0.75rem, 1.5vw, 2rem);
+}
+
+h5.title {
+  font-size: clamp(0.5rem, 1.25vw, 1rem);
+  text-shadow: 0px 0px 0px;
+  font-style: oblique;
+}
+
+a {
+  /* inherits parent styling on links */
+  text-decoration: inherit;
+  color: black;
+}
+
+/* DARK MODE INTIGRATION ACTIVATED!!!! */
+@media (prefers-color-scheme: dark) {
+  .main-page {
+    background-color: rgb(42, 58, 71);
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  button {
+    background-color: burlywood;
+  }
+}
+
+.grid {
+  display: grid;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  align-self: center;
+  grid-template-columns: repeat(2, minmax(0, 500px));
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 20px;
+}
+
+.card {
+  display: flex; /* lets the column expand with content*/
+  flex-direction: column;
+  width: min(500px, 100%); /* better sizing */
+  height: 750px; /* do height after to force size */
+  background-color: light-dark(rgb(110, 180, 160), rgb(19, 123, 114));
+  padding: 36px;
+  border-radius: 12px;
+
+  box-sizing: border-box;
+
+  opacity: 0.85;
+  scale: 1;
+  box-shadow: 0px 8px 20px light-dark(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+  transition: opacity 0.5s ease-in-out;
+  transition: box-shadow 0.5s;
+  transition: scale 0.75s;
+}
+
+.card:hover {
+  /* effects on hover*/
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: 10px 10px 20px
+    light-dark(rgba(182, 180, 201, 0.5), rgba(32, 32, 32, 0.7));
+  scale: 1.01;
+  transition: box-shadow 1s;
+  transition: scale 0.5s;
+}
+
+.card h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(0.5rem, 1.25vw, 1.75rem);
+}
+
+.card h3 {
+  font-style: italic;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+}
+
+.card p {
+  font-family: monospace;
+  font-size: clamp(0.4rem, 0.5vw + 0.2rem, 0.8rem);
+  line-height: 1.5;
+
+  /* formatting for paragraph in card */
+  flex-grow: 1;
+  overflow-y: auto; /* scrolls for extra text */
+}
+
+button {
+  background-color: rgb(248, 182, 96);
+  font-family: monospace;
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  text-decoration: none; /* remove underline */
+  opacity: 80%;
+  transition: opacity 0.1s ease-in-out;
+  margin-top: auto;
+}
+
+button:hover {
+  opacity: 100%;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.artwork {
+  height: 300px;
+  max-width: 100%; /* fixes the aspect ratio issue with larger images */
+  max-height: 100%;
+  object-fit: fill;
+  margin-bottom: 12px;
+  border-width: 5px;
+  border-style: ridge;
+  border-color: rgb(216, 219, 208);
+  border-radius: 10px;
+}
